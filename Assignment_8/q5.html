@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+
+    <h2>Word Counter with Highlighted Repeated Words</h2>
+
+    <textarea id="textarea" rows="10" cols="50" placeholder="Enter text" style="width: 100%; padding: 10px;"></textarea>
+    <p>Word Count: <span id="wordCount">0</span></p>
+    
+    <div id="highlightedText" style="white-space: pre-wrap; margin-top: 20px; padding: 10px; border: 1px solid #ccc; min-height: 80px;"></div>
+
+    <script>
+        const textarea = document.getElementById('textarea');
+        const wordCountElement = document.getElementById('wordCount');
+        const highlightedTextElement = document.getElementById('highlightedText');
+
+        textarea.addEventListener('input', function() {
+            const text = textarea.value.trim();
+            const words = text.split(/\s+/).filter(Boolean);
+            const wordCount = words.length;
+
+            wordCountElement.textContent = wordCount;
+
+            highlightRepeatedWords(words);
+        });
+
+        function highlightRepeatedWords(words) {
+            const wordFrequency = {};
+            const repeatedWords = [];
+
+            words.forEach(word => {
+                word = word.toLowerCase(); 
+                wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+            });
+
+            for (const word in wordFrequency) {
+                if (wordFrequency[word] > 1) {
+                    repeatedWords.push(word);
+                }
+            }
+
+            const highlightedText = words.map(word => {
+                if (repeatedWords.includes(word.toLowerCase())) {
+                    return `<span style="background-color: yellow; font-weight: bold;">${word}</span>`;
+                } else {
+                    return word;
+                }
+            }).join(' ');
+
+            highlightedTextElement.innerHTML = highlightedText;
+        }
+    </script>
+
+</body>
+</html>

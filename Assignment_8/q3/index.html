@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment-5</title>
+</head>
+<body>
+    <div style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <img id="image" src="./assets/1.jpg" style="margin-bottom: 30px; height: 200px;" alt="image">
+        <div>
+            <button onclick="handlePreviousClick()">Previous</button>
+            <button onclick="handleNextClick()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const imageNumber = [1,2,3];
+        let currentImage = 1;
+        const handleNextClick = () => {
+            currentImage = (currentImage + 1)%3;
+            document.getElementById("image").src = `./assets/${imageNumber[currentImage]}.jpg`;
+        }
+        const handlePreviousClick = () => {
+            currentImage = (currentImage - 1 + 3) % 3;
+            document.getElementById("image").src = `./assets/${imageNumber[currentImage]}.jpg`;    
+        }
+        
+    </script>
+</body>
+</html>

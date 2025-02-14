@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="height: 100vh; font-family: Arial, Helvetica, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <input type="password" id="input">
+        <div>
+
+            <label for="check-box">Show Password</label>
+            <input type="checkbox" name="check-box" id="check-box" onclick="handleCheckClick()">
+        </div>
+    </div>
+    
+
+    <script>
+        function handleCheckClick() {
+            let checkbox = document.getElementById("check-box");
+            if(checkbox.checked){
+                let input = document.querySelector("input");
+                input.type = "text"
+            } else {
+                let input = document.querySelector("input");
+                input.type = "password"
+                
+            }
+        }
+    </script>
+</body>
+</html>

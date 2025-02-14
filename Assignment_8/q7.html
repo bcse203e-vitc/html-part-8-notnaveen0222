@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Press Detector</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+
+    <h2 id="keyPressed">Press any key...</h2>
+
+    <script>
+        document.addEventListener('keydown', function(event) {
+            if(event.key == " "){
+                document.getElementById('keyPressed').innerText = `You pressed: space`;
+            } else{
+                document.getElementById('keyPressed').innerText = `You pressed: ${event.key}`;    
+            }
+        });
+    </script>
+
+</body>
+</html>
