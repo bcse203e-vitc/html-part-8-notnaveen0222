@@ -1,1 +1,47 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table Creator</title>
+</head>
+<body>
+    <div style="height: 100vh; font-family: Arial, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <input type="number" id="rows" placeholder="Enter rows">
+        <input type="number" id="cols" placeholder="Enter columns">
+        <button onclick="generateTable()">Generate Table</button>
+        <div id="tableContainer" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        function generateTable() {
+            let rows = document.getElementById("rows").value;
+            let cols = document.getElementById("cols").value;
+            let container = document.getElementById("tableContainer");
+            container.innerHTML = "";
+
+            let table = document.createElement("table");
+            table.style.borderCollapse = "collapse";
+            table.style.border = "1px solid black";
+
+            for (let i = 0; i < rows; i++) {
+                let row = document.createElement("tr");
+                for (let j = 0; j < cols; j++) {
+                    let cell = document.createElement("td");
+                    cell.textContent = `Row ${i + 1}, Col ${j + 1}`;
+                    cell.style.border = "1px solid black";
+                    cell.style.padding = "8px";
+                    row.appendChild(cell);
+                }
+                let deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "❌";
+                deleteBtn.onclick = () => row.remove();
+                row.appendChild(deleteBtn);
+                table.appendChild(row);
+            }
+            container.appendChild(table);
+        }
+    </script>
+</body>
+</html>

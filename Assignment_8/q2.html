@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <div style="height: 100vh; font-family: Arial, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <input type="text" id="name" placeholder="Name" oninput="validateName()">
+        <p id="nameError" style="color: red;"></p>
+
+        <input type="email" id="email" placeholder="Email" oninput="validateEmail()">
+        <p id="emailError" style="color: red;"></p>
+
+        <input type="password" id="password" placeholder="Password" oninput="validatePassword()">
+        <p id="passwordError" style="color: red;"></p>
+
+        <button>Sign Up</button>
+    </div>
+
+    <script>
+        function validateName() {
+            let name = document.getElementById("name");
+            let error = document.getElementById("nameError");
+            if (name.value.trim() === "") {
+                error.textContent = "Name must not be empty.";
+                name.style.border = "2px solid red";
+            } else {
+                error.textContent = "";
+                name.style.border = "2px solid green";
+            }
+        }
+
+        function validateEmail() {
+            let email = document.getElementById("email");
+            let error = document.getElementById("emailError");
+            let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regex.test(email.value)) {
+                error.textContent = "Invalid email format.";
+                email.style.border = "2px solid red";
+            } else {
+                error.textContent = "";
+                email.style.border = "2px solid green";
+            }
+        }
+
+        function validatePassword() {
+            let password = document.getElementById("password");
+            let error = document.getElementById("passwordError");
+            let regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (!regex.test(password.value)) {
+                error.textContent = "Password must be 8+ chars, 1 uppercase, 1 number.";
+                password.style.border = "2px solid red";
+            } else {
+                error.textContent = "";
+                password.style.border = "2px solid green";
+            }
+        }
+    </script>
+</body>
+</html>

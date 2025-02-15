@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <div style="height: 100vh; font-family: Arial, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <input type="number" id="timeInput" placeholder="Enter time in seconds">
+        <button onclick="startTimer()">Start</button>
+        <h2 id="countdown">Time: 0</h2>
+    </div>
+
+    <script>
+        let timer;
+        function startTimer() {
+            let time = document.getElementById("timeInput").value;
+            let countdownDisplay = document.getElementById("countdown");
+
+            clearInterval(timer);
+            timer = setInterval(() => {
+                if (time > 0) {
+                    countdownDisplay.textContent = "Time: " + time;
+                    time--;
+                } else {
+                    clearInterval(timer);
+                    countdownDisplay.textContent = "Time's Up!";
+                    new Audio("https://www.soundjay.com/button/beep-07.wav").play(); // Play sound
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
